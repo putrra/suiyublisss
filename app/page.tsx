@@ -173,7 +173,9 @@ const Home: FC = () => {
 
         {/* Behind the Craft Section */}
         <section className="bg-gradient-to-br from-pink-50 to-rose-50 py-24 px-6" id="craft">
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center"
+          
+          >
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

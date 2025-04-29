@@ -63,7 +63,6 @@ module.exports = {
       '65xl': ['65px', { lineHeight: '1' }],
       '80xl': ['80px', { lineHeight: '6rem' }],
     },
-    
     extend: {
       backgroundImage: {
         'bliss-pattern': "url('/images/bg-pattern.png')",
