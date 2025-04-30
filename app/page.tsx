@@ -1,4 +1,5 @@
 'use client';
+
 import Link from 'next/link';
 import SplashCursor from './components/SplashCursor/SplashCursor';
 import { useEffect } from 'react';
@@ -51,14 +52,7 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <div
-      className="text-gray-900 min-h-screen"
-      style={{
-        fontFamily: "'Poppins', sans-serif",
-        background: 'linear-gradient(135deg, #fff7f9 0%, #ffeef5 100%)',
-        overflowX: 'hidden',
-      }}
-    >
+    <div className="text-gray-900 min-h-screen">
       {/* Navbar */}
       <motion.header
         initial={{ y: -100 }}
@@ -237,36 +231,33 @@ const Home: FC = () => {
             </p>
             <div className="grid md:grid-cols-4 gap-6">
               {([
-                { name: 'Sakura Mist', desc: 'A delicate blend of cherry blossoms and soft musk.', img: '/images/samples/rom.jpg' },
-                { name: 'Bliss Berry', desc: 'Vibrant notes of wild berries with a hint of vanilla.', img: '/images/samples/rom.jpg' },
-                { name: 'Peach Bloom', desc: 'Juicy peach fused with creamy florals.', img: '/images/samples/rom.jpg' },
-                { name: 'Velvet Rose', desc: 'Rich rose petals with a touch of warm amber.', img: '/images/samples/rom.jpg' },
+                { name: 'Sakura Mist', desc: 'A delicate blend of cherry blossoms and soft musk.', img: '/images/samples/sakura.jpg' },
+                { name: 'Bliss Berry', desc: 'Fresh berries with a dash of vanilla and jasmine.', img: '/images/samples/bliss-berry.jpg' },
+                { name: 'Velvet Rose', desc: 'A rich bouquet of roses with hints of cedarwood.', img: '/images/samples/velvet-rose.jpg' },
+                { name: 'Peach Bloom', desc: 'Sweet peaches combined with soft floral notes.', img: '/images/samples/peach-bloom.jpg' },
               ] as Scent[]).map((scent: Scent, i: number) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative bg-white rounded-3xl shadow-lg overflow-hidden"
+                  className="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all"
                 >
                   <img
                     src={scent.img}
                     alt={scent.name}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover rounded-t-2xl mb-4"
                   />
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-center px-4">{scent.desc}</p>
-                  </div>
-                  <h4 className="text-pink-600 font-semibold text-lg p-4">{scent.name}</h4>
+                  <h3 className="text-xl font-semibold text-pink-600">{scent.name}</h3>
+                  <p className="text-gray-600">{scent.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Community Glow Section */}
-        <section className="bg-gradient-to-br from-pink-100 to-rose-100 py-24 px-6" id="community">
+        {/* Community Section */}
+        <section className="bg-pink-50 py-24 px-6" id="community">
           <div className="max-w-7xl mx-auto text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -274,17 +265,15 @@ const Home: FC = () => {
               transition={{ duration: 0.6 }}
               className="text-5xl font-extrabold text-pink-600 mb-12"
             >
-              Community Glow
+              Join Our Community
             </motion.h2>
-            <p className="text-gray-600 text-lg mb-10 max-w-2xl mx-auto">
-              Join the Suiyubliss community! Share your fragrance moments and shine with us.
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
               {([
-                { img: '/images/samples/rom.jpg', caption: 'Loving my Sakura Mist vibe! 🌸' },
-                { img: '/images/samples/rom.jpg', caption: 'Peach Bloom for sunny days! ☀️' },
-                { img: '/images/samples/rom.jpg', caption: 'Velvet Rose, my evening go-to! 🌹' },
-              ] as CommunityPost[]).map((post: CommunityPost, i: number) => (
+                { img: '/images/samples/community1.jpg', caption: 'Suiyubliss fragrance experience.' },
+                { img: '/images/samples/community2.jpg', caption: 'Captured moments of joy.' },
+                { img: '/images/samples/community3.jpg', caption: 'Exploring nature and beauty.' },
+                { img: '/images/samples/community4.jpg', caption: 'Happy customers sharing their love.' },
+              ] as CommunityPost[]).map((post, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 30 }}
@@ -294,74 +283,16 @@ const Home: FC = () => {
                 >
                   <img
                     src={post.img}
-                    alt="Community Post"
-                    className="w-full h-64 object-cover rounded-t-3xl"
+                    alt={post.caption}
+                    className="w-full h-48 object-cover rounded-t-2xl mb-4"
                   />
-                  <p className="text-gray-600 p-4">{post.caption}</p>
+                  <p className="text-center text-gray-600">{post.caption}</p>
                 </motion.div>
               ))}
             </div>
-            <Link
-              href="/#share"
-              className="inline-block mt-10 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
-            >
-              Share Your Glow
-            </Link>
           </div>
         </section>
-
-        {/* Call to Action Section */}
-        <section className="bg-white py-20 px-6 text-center" id="cta">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
-              Ready to Embrace Your Signature Scent?
-            </h2>
-            <p className="text-gray-600 text-lg mb-10">
-              Discover a fragrance that reflects your unique personality. Feminine. Bold. You.
-            </p>
-            <Link
-              href="/#collection"
-              className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
-            >
-              Explore Our Collection
-            </Link>
-          </motion.div>
-        </section>
-
-        {/* Footer */}
-        <footer className="bg-gradient-to-br from-pink-100 to-rose-100 py-12 px-6 text-center text-gray-700" id="contact">
-          <div className="max-w-6xl mx-auto">
-            <h3 className="text-3xl font-bold text-pink-600 mb-4">Suiyubliss</h3>
-            <p className="mb-6 text-lg">Fragrance inspired by beauty, crafted with love.</p>
-            <div className="flex justify-center space-x-8 text-pink-600 text-2xl mb-6">
-              <a href="#" className="hover:scale-125 transition-transform">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#" className="hover:scale-125 transition-transform">
-                <i className="fab fa-tiktok"></i>
-              </a>
-              <a href="#" className="hover:scale-125 transition-transform">
-                <i className="fab fa-facebook"></i>
-              </a>
-            </div>
-            <p className="text-sm">© 2025 Suiyubliss. All rights reserved.</p>
-          </div>
-        </footer>
       </main>
-
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap"
-        rel="stylesheet"
-      />
     </div>
   );
 };

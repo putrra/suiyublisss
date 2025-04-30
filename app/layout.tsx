@@ -1,17 +1,13 @@
+// app/layout.tsx
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-  display: 'swap',
-});
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Suiyubliss - Fragrance Inspired by Beauty',
-  description: 'Discover feminine and bold fragrances crafted with love at Suiyubliss.',
-  viewport: 'width=device-width, initial-scale=1',
+  title: 'Suiyubliss',
+  description: 'Fragrance inspired by beauty, crafted with love.',
 };
 
 export default function RootLayout({
@@ -32,31 +28,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${poppins.className} text-gray-900 min-h-screen`}
+        className={inter.className}
         style={{
+          fontFamily: "'Poppins', sans-serif",
           background: 'linear-gradient(135deg, #fff7f9 0%, #ffeef5 100%)',
           overflowX: 'hidden',
+          color: '#111827', // Tailwind gray-900
         }}
       >
-        <main>{children}</main>
-        <footer className="bg-gradient-to-br from-pink-100 to-rose-100 py-12 px-6 text-center text-gray-700">
-          <div className="max-w-6xl mx-auto">
-            <h3 className="text-3xl font-bold text-pink-600 mb-4">Suiyubliss</h3>
-            <p className="mb-6 text-lg">Fragrance inspired by beauty, crafted with love.</p>
-            <div className="flex justify-center space-x-8 text-pink-600 text-2xl mb-6">
-              <a href="#" className="hover:scale-125 transition-transform">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#" className="hover:scale-125 transition-transform">
-                <i className="fab fa-tiktok"></i>
-              </a>
-              <a href="#" className="hover:scale-125 transition-transform">
-                <i className="fab fa-facebook"></i>
-              </a>
-            </div>
-            <p className="text-sm">© 2025 Suiyubliss. All rights reserved.</p>
-          </div>
-        </footer>
+        {children}
       </body>
     </html>
   );
