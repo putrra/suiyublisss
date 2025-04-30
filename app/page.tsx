@@ -1,53 +1,54 @@
-'use client'
-import SplashCursor from './components/SplashCursor/SplashCursor'
-import { useEffect } from 'react'
-import TextPressure from './components/TextPressure/TextPressure'
-import { motion } from 'framer-motion'
-import { FC } from 'react'
+'use client';
+import Link from 'next/link';
+import SplashCursor from './components/SplashCursor/SplashCursor';
+import { useEffect } from 'react';
+import TextPressure from './components/TextPressure/TextPressure';
+import { motion } from 'framer-motion';
+import { FC } from 'react';
 
 // Define types for the product and scent journey items
 interface Product {
-  name: string
-  img: string
+  name: string;
+  img: string;
 }
 
 interface Scent {
-  name: string
-  desc: string
-  img: string
+  name: string;
+  desc: string;
+  img: string;
 }
 
 interface CraftStep {
-  title: string
-  text: string
-  icon: string
+  title: string;
+  text: string;
+  icon: string;
 }
 
 interface CommunityPost {
-  img: string
-  caption: string
+  img: string;
+  caption: string;
 }
 
 // Define the Home component as a Functional Component
 const Home: FC = () => {
   useEffect(() => {
-    const menuBtn: HTMLElement | null = document.getElementById('menu-btn')
-    const mobileMenu: HTMLElement | null = document.getElementById('mobile-menu')
+    const menuBtn: HTMLElement | null = document.getElementById('menu-btn');
+    const mobileMenu: HTMLElement | null = document.getElementById('mobile-menu');
 
     const toggleMenu = () => {
-      mobileMenu?.classList.toggle('hidden')
-    }
+      mobileMenu?.classList.toggle('hidden');
+    };
 
     if (menuBtn) {
-      menuBtn.addEventListener('click', toggleMenu)
+      menuBtn.addEventListener('click', toggleMenu);
     }
 
     return () => {
       if (menuBtn) {
-        menuBtn.removeEventListener('click', toggleMenu)
+        menuBtn.removeEventListener('click', toggleMenu);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div
@@ -66,22 +67,22 @@ const Home: FC = () => {
         className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-lg shadow-lg"
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a
+          <Link
+            href="/"
             className="text-3xl font-extrabold text-pink-600 tracking-widest uppercase hover:scale-105 transition-transform"
-            href="#"
           >
             Suiyubliss
-          </a>
+          </Link>
           <nav className="hidden md:flex space-x-12 font-semibold text-gray-700">
             {['Shop', 'About', 'Reviews', 'Get Started', 'Contact'].map((item: string) => (
-              <a
+              <Link
                 key={item}
+                href={`/#${item.toLowerCase().replace(' ', '-')}`}
                 className="relative group hover:text-pink-600 transition-colors"
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
               >
                 {item}
                 <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-pink-600 group-hover:w-full transition-all duration-300" />
-              </a>
+              </Link>
             ))}
           </nav>
           <button
@@ -97,13 +98,13 @@ const Home: FC = () => {
           id="mobile-menu"
         >
           {['Shop', 'About', 'Reviews', 'Get Started', 'Contact'].map((item: string) => (
-            <a
+            <Link
               key={item}
+              href={`/#${item.toLowerCase().replace(' ', '-')}`}
               className="block hover:text-pink-600 transition-colors py-2"
-              href={`#${item.toLowerCase().replace(' ', '-')}`}
             >
               {item}
-            </a>
+            </Link>
           ))}
         </div>
       </motion.header>
@@ -173,9 +174,7 @@ const Home: FC = () => {
 
         {/* Behind the Craft Section */}
         <section className="bg-gradient-to-br from-pink-50 to-rose-50 py-24 px-6" id="craft">
-          <div className="max-w-6xl mx-auto text-center"
-          
-          >
+          <div className="max-w-6xl mx-auto text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -302,12 +301,12 @@ const Home: FC = () => {
                 </motion.div>
               ))}
             </div>
-            <a
-              href="#share"
+            <Link
+              href="/#share"
               className="inline-block mt-10 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
             >
               Share Your Glow
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -325,12 +324,12 @@ const Home: FC = () => {
             <p className="text-gray-600 text-lg mb-10">
               Discover a fragrance that reflects your unique personality. Feminine. Bold. You.
             </p>
-            <a
-              href="#collection"
+            <Link
+              href="/#collection"
               className="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
             >
               Explore Our Collection
-            </a>
+            </Link>
           </motion.div>
         </section>
 
@@ -364,7 +363,7 @@ const Home: FC = () => {
         rel="stylesheet"
       />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
